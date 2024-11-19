@@ -1,4 +1,4 @@
-mod Special;
+mod pf2_structs;
 
 use std::env::args_os;
 use std::ffi::OsString;
@@ -6,7 +6,7 @@ use std::fs::File;
 use std::io::Read;
 use std::ops::Add;
 use json::Array;
-use crate::Special::DC;
+use crate::pf2_structs::DC;
 
 fn main() {
     let mut output_text = String::new();
@@ -82,7 +82,7 @@ fn main() {
         let actions = &special["actions"];
         let special_type = &special["type"];
         let description = &special["description"];
-        let special = Special::Special {
+        let special = pf2_structs::Special {
             name: name.to_string(),
             traits: traits.members().map(|t| t.to_string()).collect(),
             range: range.to_string(),
@@ -317,7 +317,7 @@ fn main() {
         let attack = &s["attack"];
         let damage = &s["damage"];
         let type_ = &s["type"];
-        let strike = Special::Strike {
+        let strike = pf2_structs::Strike {
             name: name.to_string(),
             traits: traits.members().map(|t| t.to_string()).collect(),
             attack: attack.to_string(),

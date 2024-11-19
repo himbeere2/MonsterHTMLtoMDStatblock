@@ -16,7 +16,7 @@ pub(crate) struct DC {
     pub(crate) note: String
 }
 
-impl Special{
+impl Special {
     pub(crate) fn to_string(&self) -> String {
         let mut s = String::new();
         if !self.name.is_empty(){
@@ -80,14 +80,15 @@ pub(crate) struct Strike {
 impl Strike {
     pub(crate) fn to_string(&self) -> String {
         let mut s = String::new();
-        if !self.name.is_empty(){
-            s += &format!("> **{}**\n", self.name);
-        }
-        if !self.traits.is_empty(){
-            s += &format!("> *{}*\n", self.traits.join(", "));
+        if !self.name.is_empty() {
+            s += &format!("> **{}**", self.name);
+            if !self.traits.is_empty() {
+                s += &format!(" {}", self.traits.join(", "));
+            }
+            s+= ": ";
         }
         if !self.attack.is_empty(){
-            s += &format!("> *{}*\n", self.attack);
+            s += &format!(" *({} actions)*\n", self.attack);
         }
         if !self.damage.is_empty(){
             s += &format!("> *{}*\n", self.damage);
