@@ -19,17 +19,19 @@ pub(crate) struct DC {
 impl Special {
     pub(crate) fn to_string(&self) -> String {
         let mut s = String::new();
-        if !self.name.is_empty(){
-            s += &format!("> **{}**\n", self.name);
-        }
-        if !self.traits.is_empty(){
-            s += &format!("> *{}*\n", self.traits.join(", "));
-        }
-        if !self.range.is_empty(){
-            s += &format!("> *{}*\n", self.range);
-        }
-        if !self.actions.is_empty(){
-            s += &format!("> *{}*\n", self.actions);
+        if !self.name.is_empty() {
+            s += &format!("> **{}**", self.name);
+            if !self.traits.is_empty() {
+                s += &format!(" (*{}*)", self.traits.join(", "));
+            }
+            if !self.range.is_empty() {
+                s += &format!(" ({})", self.range);
+            }
+
+            if !self.actions.is_empty() {
+                s += &format!(" ({} actions)", self.actions);
+            }
+            s+=": ";
         }
         if !self.special_type.is_empty(){
             s += &format!("> *{}*\n", self.special_type);
