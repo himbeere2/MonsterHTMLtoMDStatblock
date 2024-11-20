@@ -67,7 +67,7 @@ impl DC {
         if !self.note.is_empty(){
             s += &format!(" {}", self.note);
         }
-        s+"\n"
+        s
     }
 }
 
